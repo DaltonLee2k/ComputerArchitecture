@@ -1,3 +1,5 @@
+
+
 #Necessary Functions
 
 def dest2bin(mnemonic):
@@ -7,14 +9,23 @@ def dest2bin(mnemonic):
         "M": "001", 
         "D": "010",
         "DM": "011",
+        "MD": "011",
         "A": "100",
         "AM": "101",
+        "MA": "101",
         "AD": "110",
-        "ADM": "111"
+        "DA": "110",
+        "ADM": "111",
+        "AMD": "111",
+        "DMA": "111",
+        "DAM": "111",
+        "MDA": "111",
+        "MAD": "111"
     }
-
-    destBin = destTable.get(mnemonic)
-    return destBin
+    
+    
+    return destTable.get(mnemonic)
+    
 
 def comp2bin(mnemonic):
     # returns the binary code for the comp part of a C-instruction
@@ -100,8 +111,7 @@ def getDest(command):
         indx = command.find("=")
         mnemonic = command[:indx]
     else:
-        print("No destination")
-        return
+        return "null"
     return mnemonic
 
 def getComp(command):
@@ -128,20 +138,19 @@ def getJump(command):
         indx = command.find(";")
         mnemonic = command[indx+1:]
     else:
-        print("No Jump")
-        return
+        return "null"
     return mnemonic
-
     
 
 def test():
-    commands = ["D=D+A","D;JGT"]
+    commands = ["D=D+A","D;JGT","   0;JMP","D=D-M  ","M=D"]
 
     for command in commands:
         print(command)
         print("Dest: ",getDest(command), " Binary: ",dest2bin(getDest(command)))
         print("Comp: ",getComp(command), " Binary: ",comp2bin(getComp(command)))
         print("Jump: ",getJump(command), " Binary: ",jump2bin(getJump(command)))
+        print("Full Binary: ",processC(command))
         print()
     
 
