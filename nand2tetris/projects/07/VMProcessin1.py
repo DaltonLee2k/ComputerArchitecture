@@ -30,10 +30,18 @@ def pointerSeg(push,seg,index):
     # index - an integer that species the offset from the segment's base address
     # OUTPUTS:
     # a string of hack machine language instructions that performs push/pop seg index
+    assemb = ''
+    indexString = str(index)
+    getLCL = "@" + seg + "\nD=M\n@" + indexString +"\nD=D+A"
+    assemb += getLCL
+
+    if (push == 'push'):
+        assemb += 
+    elif (push == 'pop'):
+        assemb += 
 
 
-
-    pass
+    return assemb
 
 def constantSeg(push,seg,index):
     # This function returns a sequence of machine language
@@ -52,10 +60,10 @@ def constantSeg(push,seg,index):
     # a string of hack machine language instructions that perform push/pop seg index
     # if push = 'push', seg = 'constant', and index = an integer
     # or if push = 'push' or 'pop', seg = 'static' and index = and integer
+    assemb = ''
 
 
-
-    pass
+    return assemb
 
 
 
@@ -73,11 +81,11 @@ def fixedSeg(push,seg,index):
     # index - an integer that species the offset from the segment's base address
     # OUTPUTS:
     # a string of hack machine language instructions that performs push/pop seg index
+    assemb = ''
+
+
+    return assemb
 
 
 
-    
-    pass
-
-
-print(getPopD())
+print(pointerSeg('push','LCL',5))
