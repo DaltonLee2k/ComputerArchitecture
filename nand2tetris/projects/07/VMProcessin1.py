@@ -88,4 +88,16 @@ def fixedSeg(push,seg,index):
 
 
 
-print(pointerSeg('push','LCL',5))
+def getGoto(label):
+    #if we see a goto jump to execute command just after label
+    return @label, 0;JMP, 
+
+def getLabel(label):
+    return "(" + label + ")"
+
+def getIfgoto(label):
+    assemb = ''
+    assemb += getPopD()        # Pop the value at the top of the stack into the D register
+    assemb += "@" + label + "\n"  # Load the label's address into the A register
+    assemb += "D;JNE\n"       # Jump to the label if the value in D is not zero
+    return assemb
